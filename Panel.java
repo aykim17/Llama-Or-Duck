@@ -3,21 +3,57 @@ import java.awt.*;
 
 public class Panel extends JPanel {
 	
-	ImageIcon image;
-	private JLabel label;
+	private ImageIcon image;
+	private boolean gameLost;
+	private int score;
+	private ImageIcon buffered;
+	private Font normal, lost;
 
 	public Panel() {
-		image = new ImageIcon(Photo.getRandomPhoto());
-		label = new JLabel(image, JLabel.CENTER);
+		score = 0;
+		image = new ImageIcon(getClass().getResource(Photo.getRandomPhoto()));
+		normal = new Font("Serif", Font.PLAIN, 1);
+		lost = new Font("Serif", Font.BOLD, 48);
+		buffered = new ImageIcon(getClass().getResource(Photo.getLossPhoto()));
+		gameLost = false;
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics g) {
 		g.drawImage(image.getImage(), 0, 0, null);
+		g.setFont(normal);
+
+		if (gameLost) {
+			g.setColor(Color.RED);
+			g.setFont(lost);  // Make font bigger
+		}
+		g.drawString("You Lose. Score: " + score, 10, getHeight()/ 2);
 	}
 
+	public void updateScore() {
+		score++;
+	}
+
+	// Changes to next image
 	public void setImage() {
-		image = new ImageIcon(Photo.getRandomPhoto());
+		image = new ImageIcon(getClass().getResource(Photo.getRandomPhoto()));
 		repaint();
+	}
+
+	public void reset() {
+		score = 0;
+		gameLost = false;
+		setImage();
+	}
+
+	// Show lost message
+	public void setLost() {
+		image = buffered;
+		gameLost = true;
+		repaint();
+	}
+
+	public String getImage() {
+		return image.toString();
 	}
 }
