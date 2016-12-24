@@ -1,3 +1,7 @@
+/*
+	Displays initial frame
+*/
+
 import javax.swing.*;
 import java.awt.Image;
 

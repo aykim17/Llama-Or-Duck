@@ -1,13 +1,20 @@
+/*
+	Responsible for maintaining gameplay
+	Displays photos or loss message if appropriate
+*/
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class Panel extends JPanel {
+public class Panel extends JPanel implements ActionListener {
 	
 	private ImageIcon image;
 	private boolean gameLost;
 	private int score;
 	private ImageIcon buffered;
 	private Font normal, lost;
+	private Timer timer;
 
 	public Panel() {
 		score = 0;
@@ -15,6 +22,7 @@ public class Panel extends JPanel {
 		normal = new Font("Serif", Font.PLAIN, 1);
 		lost = new Font("Serif", Font.BOLD, 48);
 		buffered = new ImageIcon(getClass().getResource(Photo.getLossPhoto()));
+		timer = new Timer(1000, this);  // 1 second per image
 		gameLost = false;
 	}
 
@@ -28,6 +36,7 @@ public class Panel extends JPanel {
 			g.setFont(lost);  // Make font bigger
 		}
 		g.drawString("You Lose. Score: " + score, 10, getHeight()/ 2);
+		timer.start();
 	}
 
 	public void updateScore() {
@@ -37,6 +46,7 @@ public class Panel extends JPanel {
 	// Changes to next image
 	public void setImage() {
 		image = new ImageIcon(getClass().getResource(Photo.getRandomPhoto()));
+		timer.restart();
 		repaint();
 	}
 
@@ -50,10 +60,15 @@ public class Panel extends JPanel {
 	public void setLost() {
 		image = buffered;
 		gameLost = true;
+		timer.stop();
 		repaint();
 	}
 
 	public String getImage() {
 		return image.toString();
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		setLost();  // Displays loss message when too much time passes on image
 	}
 }

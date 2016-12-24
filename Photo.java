@@ -1,3 +1,7 @@
+/*
+	Handles all llama and duck photos
+*/
+
 import java.util.ArrayList;
 import java.util.Random;
 

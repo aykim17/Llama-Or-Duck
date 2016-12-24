@@ -1,3 +1,7 @@
+/*
+	Handles all key presses during gameplay
+*/
+
 import javax.swing.*;
 import java.awt.event.*;
 
