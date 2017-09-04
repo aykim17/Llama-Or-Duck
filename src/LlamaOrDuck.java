@@ -3,7 +3,6 @@
 */
 
 import javax.swing.*;
-import java.awt.Image;
 
 public class LlamaOrDuck extends JFrame {
 

@@ -2,13 +2,11 @@
 	Handles all key presses during gameplay
 */
 
-import javax.swing.*;
 import java.awt.event.*;
 
 public class KeyHandler implements KeyListener {
 
 	private Panel panel = LlamaOrDuck.panel;
-
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_L && panel.getImage().contains("llama")) {

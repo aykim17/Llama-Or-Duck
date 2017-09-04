@@ -1,5 +1,5 @@
 /*
-	Responsible for maintaining gameplay
+	Responsible for maintaining game play
 	Displays photos or loss message if appropriate
 */
 
@@ -40,7 +40,7 @@ public class Panel extends JPanel implements ActionListener {
 	}
 
 	public void updateScore() {
-		score++;
+	    score++;
 	}
 
 	// Changes to next image
@@ -69,6 +69,6 @@ public class Panel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		setLost();  // Displays loss message when too much time passes on image
+	    setLost();  // Displays loss message when too much time passes on image
 	}
 }
